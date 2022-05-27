@@ -1,0 +1,268 @@
+WindowManager:
+    MainWindow:
+        id: mainwindow
+    Window1:
+        id: window1
+    Window2:
+        id: window2
+    Window3:
+        id: window3
+    Window4:
+        id: window4
+    Window5:
+        id: window5
+
+<MainWindow>:
+    name: "main"
+    canvas.before:
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            texture: self.space_texture
+        Rectangle:
+            size: self.width, self.height
+            pos: self.pos
+            source: 'img/main_window.png'
+
+
+    Button:
+        font_name: 'font/DisposableDroidBB'
+        text: "The Big Bang Theory"
+        color: .9,.9,0,1
+        background_color: 1, 1, 1, 0.1
+        font_size: 26
+        size: 32, 52
+        size_hint: .2, .4
+        pos: 1200, 200
+        on_release:
+            app.root.transition.direction = 'left'
+            app.root.current = "win1"
+
+    Button:
+        font_name: 'font/DisposableDroidBB'
+        text: "Dive into HyperSpace"
+        color: .9,.9,0,1
+        background_color: 1, 1, 1, 0.1
+        center: root.center
+        font_size: 26
+        size: 32, 32
+        size_hint: .2, .4
+        pos: self.pos
+        on_release:
+            app.root.transition.direction = 'up'
+            app.root.current = "win2"
+
+    Button:
+        font_name: 'font/DisposableDroidBB'
+        text: "Explore the Milkyway"
+        color: .9,.9,0,1
+        background_color: 1, 1, 1, 0.1
+        font_size: 26
+        size: 32, 52
+        size_hint: .2, .4
+        pos: 20, 200
+        on_release:
+            app.root.transition.direction = 'right'
+            app.root.current = "win2"
+
+
+<Window1>:
+    name: "win1"
+    BoxLayout:
+        orientation: "vertical"
+        Image:
+            source: "img/bigbang.jpg"
+            size: self.size
+            pos: self.pos
+
+        ScrollView:
+            scroll_type: ['bars']
+            bar_margin: 40
+            bar_width: 20
+            Label:
+                text_size: self.width - 200, None
+                size_hint_y: None
+                height: self.texture_size[1]+200
+                halign: 'justify'
+                valign: 'middle'
+                text: root.read_text()
+
+        Button:
+            font_name: 'font/DisposableDroidBB'
+            text: "Main Menu"
+            color: .9,.9,0,1
+            background_color: 1, 1, 1, 0.1
+            font_size: 26
+            size_hint: 0.2, 0.2
+            pos_hint: {root.x: 1, root.y: 1}
+            on_release:
+                app.root.transition.direction = 'right'
+                app.root.current = "main"
+
+<Window2>:
+    name: "win2"
+    canvas.before:
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            texture: self.s1_texture
+        Rectangle:
+            size: self.width, self.height
+            pos: self.pos
+            source: 'img/space_ship_main.png'
+
+    Button:
+        font_name: 'font/DisposableDroidBB'
+        text: "Worm Hole"
+        color: .9,.9,0,1
+        background_color: 1, 1, 1, 0.3
+        halign: 'center'
+        font_size: 24
+        size: 12, 12
+        size_hint: .1, .2
+        pos: 450, 80
+        on_release:
+            app.root.current = "win4"
+            app.root.transition.direction = 'right'
+
+    Button:
+        font_name: 'font/DisposableDroidBB'
+        text: "Black Hole"
+        color: .9,.9,0,1
+        background_color: 1, 1, 1, 0.3
+        halign: 'center'
+        font_size: 24
+        size: 12, 12
+        size_hint: .1, .2
+        pos: 910, 80
+        on_release:
+            app.root.current = "win3"
+            app.root.transition.direction = 'left'
+
+    Button:
+        font_name: 'font/DisposableDroidBB'
+        text: "Hyperspace"
+        color: .9,.9,0,1
+        background_color: 1, 1, 1, 0.3
+        halign: 'center'
+        font_size: 24
+        size: 12, 12
+        size_hint: .1, .1
+        pos: 675, 220
+        on_release:
+            app.root.current = "win5"
+            app.root.transition.direction = 'down'
+
+    Button:
+        font_name: 'font/DisposableDroidBB'
+        text: "back"
+        color: .9,.9,0,1
+        background_color: 1, 1, 1, 0.1
+        font_size: 26
+        size_hint: 0.1, 0.1
+        pos_hint: {root.x: 1, root.y: 1}
+        on_release:
+            app.root.transition.direction = 'down'
+            app.root.current = "main"
+
+<Window3>:
+    name: "win3"
+    BoxLayout:
+        orientation: "vertical"
+        Image:
+            source: "img/blackhole.gif"
+            size: self.size
+            pos: self.pos
+            anim_delay: 0.08
+
+        ScrollView:
+            scroll_type: ['bars']
+            bar_margin: 40
+            bar_width: 20
+            Label:
+                text_size: self.width - 200, None
+                size_hint_y: None
+                height: self.texture_size[1]+200
+                halign: 'justify'
+                valign: 'middle'
+                text: root.read_text()
+
+        Button:
+            font_name: 'font/DisposableDroidBB'
+            text: "back"
+            color: .9,.9,0,1
+            background_color: 1, 1, 1, 0.1
+            font_size: 26
+            size_hint: 0.2, 0.2
+            pos_hint: {root.x: 1, root.y: 1}
+            on_release:
+                app.root.transition.direction = 'right'
+                app.root.current = "win2"
+
+<Window4>:
+    name: "win4"
+    BoxLayout:
+        orientation: "vertical"
+        Image:
+            source: "img/worm.gif"
+            size: self.size
+            pos: self.pos
+            anim_delay: 0.02
+
+        ScrollView:
+            scroll_type: ['bars']
+            bar_margin: 40
+            bar_width: 20
+            Label:
+                text_size: self.width - 200, None
+                size_hint_y: None
+                height: self.texture_size[1]+200
+                halign: 'justify'
+                valign: 'middle'
+                text: root.read_text()
+
+        Button:
+            font_name: 'font/DisposableDroidBB'
+            text: "back"
+            color: .9,.9,0,1
+            background_color: 1, 1, 1, 0.1
+            font_size: 26
+            size_hint: 0.2, 0.2
+            pos_hint: {root.x: 1, root.y: 1}
+            on_release:
+                app.root.transition.direction = 'left'
+                app.root.current = "win2"
+
+<Window5>:
+    name: "win5"
+    BoxLayout:
+        orientation: "vertical"
+        Image:
+            source: "img/hyperspace.gif"
+            size: self.size
+            pos: self.pos
+            anim_delay: 0.08
+
+        ScrollView:
+            scroll_type: ['bars']
+            bar_margin: 40
+            bar_width: 20
+            Label:
+                text_size: self.width - 200, None
+                size_hint_y: None
+                height: self.texture_size[1]+200
+                halign: 'justify'
+                valign: 'middle'
+                text: root.read_text()
+
+        Button:
+            font_name: 'font/DisposableDroidBB'
+            text: "back"
+            color: .9,.9,0,1
+            background_color: 1, 1, 1, 0.1
+            font_size: 26
+            size_hint: 0.2, 0.2
+            pos_hint: {root.x: 1, root.y: 1}
+            on_release:
+                app.root.transition.direction = 'up'
+                app.root.current = "win2"
